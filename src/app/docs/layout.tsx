@@ -1,10 +1,17 @@
 import Header from "@/components/header";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function DocumentsLayout({
+export default async function DocumentsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
+
+  // if (!session) {
+  //   redirect("/auth");
+  // }
   return (
     <main className=" h-dvh  w-ful antialiased ">
       <Header />

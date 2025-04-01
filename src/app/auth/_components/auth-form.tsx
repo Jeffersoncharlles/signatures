@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { signIn } from "next-auth/react";
 
 const emailSchema = z.object({
   email: z.string().email(),
@@ -20,12 +21,23 @@ const emailSchema = z.object({
 });
 
 const AuthForm = () => {
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(emailSchema),
   });
 
-  const handleSubmit = form.handleSubmit((data) => {
+  const handleSubmit = form.handleSubmit(async (data) => {
     console.log(data);
+
+    const response = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+    });
+
+    if (!response?.error) {
+      router.push("/docs");
+      router.refresh();
+    }
   });
 
   return (

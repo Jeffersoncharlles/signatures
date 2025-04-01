@@ -12,3 +12,50 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String      @id @default(cuid())
+  name      String
+  email     String      @unique
+  password  String
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
+  Document  Document[]
+  Signature Signature[]
+
+  @@map("users")
+}
+
+enum STATUS_SIGNED {
+  PENDING
+  SIGNED
+}
+
+model Document {
+  id        String        @id @default(cuid())
+  name      String
+  fileKey   String        @unique
+  userId    String        @map("user_id")
+  status    STATUS_SIGNED
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Signature Signature[]
+
+  @@map("documents")
+}
+
+model Signature {
+  id           String   @id @default(cuid())
+  userId       String   @map("user_id")
+  documentId   String   @map("document_id")
+  signatureImg String
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user     User     @relation(fields: [userId], references: [id])
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@map("signatures")
+}

@@ -1,4 +1,5 @@
 import { PenIcon } from "lucide-react";
+import { Logout } from "./logout";
 
 const Header = () => {
   return (
@@ -7,6 +8,7 @@ const Header = () => {
         <PenIcon className="fill-primary text-primary-foreground size-6" />
         Signature
       </header>
+      <Logout />
     </header>
   );
 };

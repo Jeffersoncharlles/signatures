@@ -1,13 +1,27 @@
 import { env } from "@/env";
 import NextAuth, { NextAuthOptions } from "next-auth";
-import EmailProvider from "next-auth/providers/email";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { prisma } from "./prisma";
 
 const nextAuthOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
+  pages: {
+    signIn: "/auth",
+  },
   providers: [
-    EmailProvider({
-      server: env.EMAIL_SERVER,
-      from: env.EMAIL_FROM,
+    CredentialsProvider({
+      credentials: {
+        email: {},
+        password: {},
+      },
+      async authorize(credentials) {
+        // const EmailAlreadyExists = await prisma
+
+        return null;
+      },
     }),
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
