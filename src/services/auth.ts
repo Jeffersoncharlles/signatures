@@ -1,15 +1,16 @@
 import { env } from "@/env";
-// import { v4 as uuid } from "uuid";
 import { compare } from "bcrypt";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-// import { PrismaAdapter } from "@auth/prisma-adapter";
-// import { encode as defaultEncode } from "next-auth/jwt";
 import { prisma } from "./prisma";
 import { Prisma } from "@prisma/client";
+import { z } from "zod";
 
-// const adapter = PrismaAdapter(prisma);
+const credentialsSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
 
 const nextAuthOptions: NextAuthOptions = {
   providers: [
@@ -23,12 +24,12 @@ const nextAuthOptions: NextAuthOptions = {
         password: {},
       },
       authorize: async (credentials) => {
-        // console.log(credentials);
+        const { email, password } = credentialsSchema.parse(credentials);
 
         try {
           const user = await prisma.user.findFirst({
             where: {
-              email: credentials?.email,
+              email: email,
             },
           });
 
@@ -36,10 +37,7 @@ const nextAuthOptions: NextAuthOptions = {
             throw new Error("Invalid credentials");
           }
 
-          const confirmPassword = await compare(
-            credentials?.password || "",
-            user.password
-          );
+          const confirmPassword = await compare(password, user.password);
 
           if (!confirmPassword) {
             throw new Error("Invalid credentials");
@@ -55,10 +53,10 @@ const nextAuthOptions: NextAuthOptions = {
       },
     }),
   ],
-  // pages: {
-  //   signIn: "/sign-in",
-  // },
   secret: env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
 };
 
 const handler = NextAuth(nextAuthOptions);

@@ -1,7 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import { columns } from "./_components/columns";
 import { DataTable } from "./_components/data-table";
-import { Button } from "@/components/ui/button";
+
+import InputFiles from "./_components/input-files";
 
 export default function Docs() {
   const data = [
@@ -19,8 +20,8 @@ export default function Docs() {
         <h1>Documentos</h1>
         <Separator />
       </div>
-      <div>
-        <Button>Upload Novo PDF</Button>
+      <div className="">
+        <InputFiles />
       </div>
       <div className=" py-4">
         <DataTable columns={columns} data={data} />
