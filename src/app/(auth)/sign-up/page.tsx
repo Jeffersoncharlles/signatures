@@ -4,15 +4,26 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const emailSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
+const emailSchema = z
+  .object({
+    name: z.string().min(2, {
+      message: "name must be at least 2 characters.",
+    }),
+    email: z.string().min(1, "Email is required").email("Invalid email"),
+    password: z
+      .string()
+      .min(1, "Password is required")
+      .min(3, "Password must have than 8 characters"),
+    confirmPassword: z.string().min(1, "Password confirmation is required"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Password do not match",
+  });
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -21,25 +32,41 @@ const SignUpForm = () => {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
-  const handleSubmit = form.handleSubmit(async (data) => {
-    console.log(data);
+  const handleSubmit = form.handleSubmit(async ({ email, password, name }) => {
+    console.log({ email, password });
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, name }),
+      });
 
-    const response = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-    });
-
-    // if (!response?.error) {
-    //   router.push("/docs");
-    //   router.refresh();
-    // }
+      if (response.ok) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Registration Failed:", error);
+    }
   });
   return (
     <div>
       <form onSubmit={handleSubmit} className="grid gap-6">
+        <div className="grid gap-2">
+          <Label htmlFor="name">Nome</Label>
+          <Input
+            id="name"
+            type="text"
+            placeholder="Jho Doe"
+            required
+            {...form.register("name")}
+          />
+        </div>
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
           <Input
@@ -53,12 +80,6 @@ const SignUpForm = () => {
         <div className="grid gap-2">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Esqueceu Sua senha?
-            </a>
           </div>
           <Input
             id="password"
@@ -67,11 +88,23 @@ const SignUpForm = () => {
             {...form.register("password")}
           />
         </div>
+        <div className="grid gap-2">
+          <div className="flex items-center">
+            <Label htmlFor="confirmPassword">Confirmar Password</Label>
+          </div>
+          <Input
+            id="confirmPassword"
+            type="password"
+            required
+            {...form.register("confirmPassword")}
+          />
+        </div>
+
         <Button type="submit" className="w-full">
-          Login
+          Cadastrar
         </Button>
       </form>
-      <div className="text-center text-sm">
+      <div className="text-center text-sm mt-4">
         Já tem conta?{" "}
         <Link href="/sign-in" className="underline underline-offset-4">
           Login

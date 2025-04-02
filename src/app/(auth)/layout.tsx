@@ -1,12 +1,6 @@
 import { PenIcon } from "lucide-react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function AuthLayout({
   children,
@@ -24,7 +18,7 @@ export default function AuthLayout({
           <Card>
             <CardHeader className="text-center">
               <CardTitle className="text-xl">Bem vindo</CardTitle>
-              <CardDescription>Login com sua Conta Google</CardDescription>
+              {/* <CardDescription>Login com sua Conta Google</CardDescription> */}
             </CardHeader>
             <CardContent>
               <div>
