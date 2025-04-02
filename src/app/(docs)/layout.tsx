@@ -9,9 +9,9 @@ export default async function DocumentsLayout({
 }>) {
   const session = await getServerSession();
 
-  // if (!session) {
-  //   redirect("/auth");
-  // }
+  if (!session) {
+    redirect("/sign-in");
+  }
   return (
     <main className=" h-dvh  w-ful antialiased ">
       <Header />

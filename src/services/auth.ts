@@ -6,6 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { encode as defaultEncode } from "next-auth/jwt";
 import { prisma } from "./prisma";
+import { Prisma } from "@prisma/client";
 
 const adapter = PrismaAdapter(prisma);
 
@@ -21,18 +22,27 @@ const nextAuthOptions: NextAuthOptions = {
         password: {},
       },
       authorize: async (credentials) => {
-        const user = await prisma.user.findFirst({
-          where: {
-            email: credentials?.email,
-            password: credentials?.password,
-          },
-        });
+        // console.log(credentials);
 
-        if (!user) {
-          throw new Error("Invalid credentials.");
+        try {
+          const user = await prisma.user.findFirst({
+            where: {
+              email: credentials?.email,
+              password: credentials?.password,
+            },
+          });
+
+          if (!user) {
+            throw new Error("Invalid credentials");
+          }
+
+          return user;
+        } catch (error) {
+          if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new Error("Ops.. Ocorreu um erro volte mais tarde!.");
+          }
+          throw new Error("Invalid credentials");
         }
-
-        return user;
       },
     }),
   ],
@@ -67,6 +77,10 @@ const nextAuthOptions: NextAuthOptions = {
       return defaultEncode(params);
     },
   },
+  // pages: {
+  //   signIn: "/sign-in",
+  // },
+  secret: env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(nextAuthOptions);

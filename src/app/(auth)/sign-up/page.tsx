@@ -1,3 +1,4 @@
+"use client";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
@@ -6,13 +7,14 @@ import { z } from "zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const emailSchema = z.object({
   email: z.string().email(),
   password: z.string(),
 });
 
-export const SignInForm = () => {
+const SignUpForm = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
@@ -30,10 +32,10 @@ export const SignInForm = () => {
       password: data.password,
     });
 
-    if (!response?.error) {
-      router.push("/docs");
-      router.refresh();
-    }
+    // if (!response?.error) {
+    //   router.push("/docs");
+    //   router.refresh();
+    // }
   });
   return (
     <div>
@@ -70,11 +72,13 @@ export const SignInForm = () => {
         </Button>
       </form>
       <div className="text-center text-sm">
-        Nao tem conta?{" "}
-        <a href="#" className="underline underline-offset-4">
-          Cadastrar
-        </a>
+        Já tem conta?{" "}
+        <Link href="/sign-in" className="underline underline-offset-4">
+          Login
+        </Link>
       </div>
     </div>
   );
 };
+
+export default SignUpForm;
