@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,38 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { signIn } from "next-auth/react";
-
-const emailSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
+import { SignInForm } from "./sign-in-form";
 
 const AuthForm = () => {
-  const router = useRouter();
-  const form = useForm({
-    resolver: zodResolver(emailSchema),
-  });
-
-  const handleSubmit = form.handleSubmit(async (data) => {
-    console.log(data);
-
-    const response = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-    });
-
-    if (!response?.error) {
-      router.push("/docs");
-      router.refresh();
-    }
-  });
-
   return (
     <div className="flex flex-col gap-6">
       <Card>
@@ -48,7 +19,7 @@ const AuthForm = () => {
           <CardDescription>Login com sua Conta Google</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit}>
+          <div>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button variant="outline" className="w-full">
@@ -66,51 +37,13 @@ const AuthForm = () => {
                   Ou por Email
                 </span>
               </div>
-              <div className="grid gap-6">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="example@example.com"
-                    required
-                    {...form.register("email")}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
-                    <a
-                      href="#"
-                      className="ml-auto text-sm underline-offset-4 hover:underline"
-                    >
-                      Esqueceu Sua senha?
-                    </a>
-                  </div>
-                  <Input
-                    id="password"
-                    type="password"
-                    required
-                    {...form.register("password")}
-                  />
-                </div>
-                <Button type="submit" className="w-full">
-                  Login
-                </Button>
-              </div>
-              <div className="text-center text-sm">
-                Nao tem conta?{" "}
-                <a href="#" className="underline underline-offset-4">
-                  Cadastrar
-                </a>
-              </div>
+              <SignInForm />
             </div>
-          </form>
+          </div>
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
       </div>
     </div>
   );
