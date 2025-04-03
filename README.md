@@ -6,6 +6,7 @@
 	<img src="https://img.shields.io/github/last-commit/Jeffersoncharlles/signatures?style=flat-square&logo=git&logoColor=white&color=00ff36" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/Jeffersoncharlles/signatures?style=flat-square&color=00ff36" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/Jeffersoncharlles/signatures?style=flat-square&color=00ff36" alt="repo-language-count">
+	<img src="https://img.shields.io/github/languages/count/Jeffersoncharlles/signatures?style=flat-square&color=00ff36" alt="repo-language-count">
 </p>
         <p>Built with the tools and technologies:</p>
         <p>
@@ -14,11 +15,15 @@
 	<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat-square&logo=JavaScript&logoColor=black" alt="JavaScript">
 	<img src="https://img.shields.io/badge/React-61DAFB.svg?style=flat-square&logo=React&logoColor=black" alt="React">
 	<img src="https://img.shields.io/badge/Docker-2496ED.svg?style=flat-square&logo=Docker&logoColor=white" alt="Docker">
+	<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwindcss">
 	<br>
 	<img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=flat-square&logo=TypeScript&logoColor=white" alt="TypeScript">
 	<img src="https://img.shields.io/badge/Prisma-2D3748.svg?style=flat-square&logo=Prisma&logoColor=white" alt="Prisma">
 	<img src="https://img.shields.io/badge/Zod-3E67B1.svg?style=flat-square&logo=Zod&logoColor=white" alt="Zod">
 	<img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat-square&logo=ESLint&logoColor=white" alt="ESLint">
+	<img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel">
+	<img src="https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white" alt="Clouflare">
+	<img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0" alt="macOS">
 </p>
     </div>
 </div>
@@ -34,9 +39,7 @@
   - [ Prerequisites](#-prerequisites)
   - [ Installation](#-installation)
   - [ Usage](#-usage)
-  - [ Testing](#-testing)
-- [ Project Roadmap](#-project-roadmap)
-- [ Contributing](#-contributing)
+- [ Funcionalidades Esperadas](#-funcionalidades-esperadas)
 - [ License](#-license)
 - [ Acknowledgments](#-acknowledgments)
 
@@ -44,13 +47,32 @@
 
 ## Overview
 
-<code>❯ REPLACE-ME</code>
+- O projeto consiste em criar em cadastrar usuario logar e fazer um upload de um pdf para poder fazer a assinatura digital
+  voce podendo ver a lista de todos os pdf que foram salvos no banco de dados e excluir e tambem assinar onde tem tambem na lista os status de assinado ou nao
 
 ---
 
 ## Features
 
-<code>❯ REPLACE-ME</code>
+- [✅] cadastrar o usuario com email e senha
+- [✅] o cadastro deve confirmar se as duas senhas confere
+  - [x] Resposta que as senhas nao batem "Tempo Curto funcionalidade a fazer"
+- [✅] Logar o usuario com email e senha cadastrado
+  - [x] Logar com OAuth Google "Tempo Curto funcionalidade a fazer"
+- [✅] Caso o usuario digite algo incorreto deve avisar que as credenciais nao sao validas
+  - [x] Resposta mais atrativa "Tempo Curto funcionalidade a fazer"
+- [✅] Usario logado redirecionado para pagina de admin
+- [✅] Usario faz Logout
+- [✅] se o usuario nao tiver logado ele nao tem acesso a pagina
+- [✅] fazer upload de um arquivo pdf para assinatura
+- [✅] Validar se o arquivo e pdf se nao for nao sobe
+- [✅] listar todos os arquivos pdf do usuario em banco de dados
+- [✅] Visualizar status do arquivo nome e usuario a que pertence
+- [ ] Criar a visualizacao do PDF"
+- [ ] Deletar o PDF"
+- [ ] Criar a assinatura e mudar o status do pdf "
+- [ ] Criar o registro da assinatura em timestamp "
+- [ ] Criar a interface da assinatura"
 
 ---
 
@@ -79,50 +101,15 @@
     └── tsconfig.json
 ```
 
+---
+
+## PREVIEW ONLINE
+
+## [SIGNATURE ONLINE](https://signatures-chi.vercel.app)
+
 ### Project Index
 
-<details open>
-	<summary><b><code>SIGNATURES/</code></b></summary>
-	<details> <!-- __root__ Submodule -->
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/next.config.mjs'>next.config.mjs</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/pnpm-lock.yaml'>pnpm-lock.yaml</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/tsconfig.json'>tsconfig.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/postcss.config.mjs'>postcss.config.mjs</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/package.json'>package.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/components.json'>components.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/docker-compose.yml'>docker-compose.yml</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/tailwind.config.ts'>tailwind.config.ts</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- src Submodule -->
+<details> <!-- src Submodule -->
 		<summary><b>src</b></summary>
 		<blockquote>
 			<details>
@@ -343,40 +330,6 @@
 			</details>
 		</blockquote>
 	</details>
-	<details> <!-- prisma Submodule -->
-		<summary><b>prisma</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/prisma/schema.prisma'>schema.prisma</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-			<details>
-				<summary><b>migrations</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/prisma/migrations/migration_lock.toml'>migration_lock.toml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-					<details>
-						<summary><b>20250402090714_create_database_skeleton</b></summary>
-						<blockquote>
-							<table>
-							<tr>
-								<td><b><a href='https://github.com/Jeffersoncharlles/signatures/blob/master/prisma/migrations/20250402090714_create_database_skeleton/migration.sql'>migration.sql</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							</table>
-						</blockquote>
-					</details>
-				</blockquote>
-			</details>
-		</blockquote>
-	</details>
-</details>
 
 ---
 
@@ -410,16 +363,18 @@ Install signatures using one of the following methods:
 
 3. Install the project dependencies:
 
+**Using `docker composer - database`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Docker-2CA5E0.svg?style={badge_style}&logo=docker&logoColor=white" />](https://www.docker.com/)
+
+```sh
+❯ docker composer -up -d
+```
+
 **Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
 
 ```sh
 ❯ npm install
-```
+❯ npx prisma migrate dev
 
-**Using `docker`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Docker-2CA5E0.svg?style={badge_style}&logo=docker&logoColor=white" />](https://www.docker.com/)
-
-```sh
-❯ docker build -t Jeffersoncharlles/signatures .
 ```
 
 ### Usage
@@ -428,74 +383,58 @@ Run signatures using the following command:
 **Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
 
 ```sh
-❯ npm start
-```
-
-**Using `docker`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Docker-2CA5E0.svg?style={badge_style}&logo=docker&logoColor=white" />](https://www.docker.com/)
-
-```sh
-❯ docker run -it {image_name}
-```
-
-### Testing
-
-Run the test suite using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
-
-```sh
-❯ npm test
+❯ npm run dev
 ```
 
 ---
 
-## Project Roadmap
+## Funcionalidades Esperadas
 
-- [x] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
+1. Autenticação
+
+   - Página de login/registro
+   - Proteção de rotas privadas
+   - Logout
+   - Gerenciamento básico de sessão
+
+2. Gerenciamento de Documentos
+
+   - Listagem de documentos do usuário logado
+   - Upload de novos documentos (PDF)
+   - Visualização de documento
+   - Exclusão de documentos
+
+3. Assinatura Digital (Simplificada)
+
+   - Interface para simular assinatura em documento
+   - Registro da assinatura com timestamp
+   - Status do documento (Pendente, Assinado)
 
 ---
 
-## Contributing
+## Desafios enfrentados e soluções adotadas
 
-- **💬 [Join the Discussions](https://github.com/Jeffersoncharlles/signatures/discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://github.com/Jeffersoncharlles/signatures/issues)**: Submit bugs found or log feature requests for the `signatures` project.
-- **💡 [Submit Pull Requests](https://github.com/Jeffersoncharlles/signatures/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+1. TEMPO sem sombras de duvidas 3 dias e pouco tempo estou programando em media 9 horas por dia isso so em codigo com o registro do walkatime
+   mesmo assim acredito que nao vou entrar meu melhor
 
-<details closed>
-<summary>Contributing Guidelines</summary>
+2. upload de arquivos sabia que isso poderia ficar muito ruim entao pensei em algumas formas e a melhor solucao foi criar um bucket no R2 da CloudFire
 
-1. **Fork the Repository**: Start by forking the project repository to your github account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
-   ```sh
-   git clone https://github.com/Jeffersoncharlles/signatures
-   ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
-   ```sh
-   git checkout -b new-feature-x
-   ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
-   ```sh
-   git commit -m 'Implemented new feature x.'
-   ```
-6. **Push to github**: Push the changes to your forked repository.
-   ```sh
-   git push origin new-feature-x
-   ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
-</details>
+3. TEMPO novamente nao estou conseguindo corrigir detalhes por que estou tentando entregar todas as funcionalidades no tempo desejado
 
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://github.com{/Jeffersoncharlles/signatures/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=Jeffersoncharlles/signatures">
-   </a>
-</p>
-</details>
+4. o desafio e de FRONT-END... mais foi pedido coisas de full-stack , mesmo eu me encaixando como full-stack isso nao estava na proposta da vaga
+
+5. logica da assinatura nao ficou muito bem explicado como era para fazer entao pretendo seguir a seguinte logica "se der tempo."
+
+   - criar uma pagina de draw onde a pessoa vai poder assinar salvar esse draw em uma pasta no bucket com o pdf
+   - e mudar o status para assinado
+   - (se fosse algo mais real tavez usaria uma lib que achei onde ela faz a veredura do pdf e coloca onde deve fazer a assinatura ou ate mesmo criaria)
+
+6. Toda a a parte de back-end para nao ficar fazendo rotas resulvi usar a parte de actions do nextjs para andar mais rapido e nao ter que fazer varias alteracoes e, codigo
+
+7. o deploy como opcional eu sempre faco e sempre utilizo a vercel tive alguns problemas exatamnete por que tinha que usar a parte de routes mais para andar mais rapido comecei a usar actions
+
+8. eu iria usar um recurso de middleware para routes privadas , mais novamente o tempo atrapalhou entao usei a logica mais basica de usar a session no layout da rota privada para saber se estar autenticado ou nao
+   poderia ser melhor mais o tempo curto nao deixa eu estudar melhores alternativas
 
 ---
 
