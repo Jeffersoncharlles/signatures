@@ -41,7 +41,7 @@ const SignUpForm = () => {
     console.log({ email, password });
     try {
       const response = await fetch(
-        `${env.NEXT_PUBLIC_API_URL}/api/auth/register`,
+        `https://signatures-chi.vercel.app/api/auth/register`,
         {
           method: "POST",
           headers: {
