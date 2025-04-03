@@ -5,12 +5,22 @@ import { bucket } from "@/services/buckets";
 import { env } from "@/env";
 import { generateNameRandom } from "@/lib/generate-name-random";
 import { getServerSession } from "next-auth/next";
+import { prisma } from "@/services/prisma";
 
 export const POST = async (req: NextRequest) => {
   const session = await getServerSession();
 
   // console.log({ session });
   if (!session) {
+    return NextResponse.json({ success: false }, { status: 500 });
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { email: session.user?.email ?? undefined },
+    select: { id: true }, // Busca apenas o necessário
+  });
+
+  if (!user) {
     return NextResponse.json({ success: false }, { status: 500 });
   }
 
@@ -41,11 +51,23 @@ export const POST = async (req: NextRequest) => {
 
     // Fazer upload para o S3
 
-    await bucket.send(putObjectCommand);
-    // Promise.all([]);
+    // Fazer upload para o R2 com verificação de erro
+    try {
+      await bucket.send(putObjectCommand);
+    } catch (uploadError) {
+      console.error("Erro no upload para o R2:", uploadError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Falha ao enviar o arquivo para o armazenamento",
+        },
+        { status: 500 }
+      );
+    }
 
     // Gerar URL pública do arquivo
-    const fileUrl = `https://${env.AWS_BUCKET_NAME}.r2.cloudflarestorage.com/${uniqueFileName}`;
+    // const fileUrl = `https://${env.AWS_BUCKET_NAME}.r2.cloudflarestorage.com/${uniqueFileName}`;
+    // const fileUrl = `${env.AWS_END_POINT}/${env.AWS_BUCKET_NAME}/${uniqueFileName}`;
 
     // Gerar Signed URL (se o bucket for privado)
     const getObjectCommand = new GetObjectCommand({
@@ -56,11 +78,24 @@ export const POST = async (req: NextRequest) => {
       expiresIn: 60 * 60, // 3600  = 1hr
     });
 
+    // Inserir no banco de dados usando Prisma
+    await prisma.document.create({
+      data: {
+        name: file.name, // Nome do arquivo salvo no BD
+        fileKey: uniqueFileName,
+        status: "PENDING",
+        userId: user.id,
+      },
+    });
+
     // Expira em 1 hora
-    console.log(fileUrl);
+    // console.log(fileUrl);
     console.log(signedUrl);
 
-    return NextResponse.json({ success: true, url: fileUrl }, { status: 200 });
+    return NextResponse.json(
+      { success: true, url: signedUrl },
+      { status: 200 }
+    );
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return NextResponse.json({ success: false }, { status: 500 });

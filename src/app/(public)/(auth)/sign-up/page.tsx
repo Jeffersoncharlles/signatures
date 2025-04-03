@@ -40,6 +40,7 @@ const SignUpForm = () => {
     try {
       const response = await fetch(
         `https://signatures-chi.vercel.app/api/auth/register`,
+        // `/api/auth/register`,
         {
           method: "POST",
           headers: {

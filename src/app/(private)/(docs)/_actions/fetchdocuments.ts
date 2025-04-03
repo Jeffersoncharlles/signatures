@@ -22,18 +22,41 @@ export async function fetchDocuments() {
       return redirect("/sign-in");
     }
 
-    const userWithDocuments = await prisma.user.findMany({
+    const userWithDocuments = await prisma.document.findMany({
       where: {
-        id: user.id,
+        userId: user.id,
       },
       include: {
-        Document: true, // Busca todos os documentos do usuário
+        user: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
-    return { success: true, documents: userWithDocuments, status: 200 };
+    const documentsUser = {
+      documents: userWithDocuments.map((doc) => {
+        return {
+          id: doc.id,
+          name: doc.name,
+          userId: doc.userId,
+          user: doc.user.name,
+          fileKey: doc.fileKey,
+          createdAt: doc.createdAt,
+          updatedAt: doc.updatedAt,
+          status: doc.status,
+        };
+      }),
+    };
+
+    return { success: true, documentsUser, status: 200 };
   } catch (error) {
     console.error("Erro ao buscar usuário:", error);
-    return { success: false, message: "Erro interno do servidor", status: 500 };
+    return {
+      success: false,
+      message: "Erro interno do servidor",
+      status: 500,
+    };
   }
 }

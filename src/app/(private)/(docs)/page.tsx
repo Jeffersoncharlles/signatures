@@ -4,20 +4,10 @@ import { DataTable } from "./_components/data-table";
 
 import InputFiles from "./_components/input-files";
 import { fetchDocuments } from "./_actions/fetchdocuments";
+import { Suspense } from "react";
 
 export default async function Docs() {
-  const data = [
-    {
-      id: "22312312",
-      name: "Detran",
-      user: "Jefferson",
-      status: "PENDING",
-    },
-  ];
-
-  const datas = await fetchDocuments();
-
-  console.log(datas);
+  const fetchResult = await fetchDocuments();
 
   return (
     <div className="flex flex-col">
@@ -29,7 +19,12 @@ export default async function Docs() {
         <InputFiles />
       </div>
       <div className=" py-4">
-        <DataTable columns={columns} data={data} />
+        <Suspense fallback={<>carregando</>}>
+          <DataTable
+            columns={columns}
+            data={fetchResult?.documentsUser?.documents || []}
+          />
+        </Suspense>
       </div>
     </div>
   );
