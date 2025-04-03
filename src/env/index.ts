@@ -14,9 +14,3 @@ const envSchema = z.object({
 });
 
 export const env = envSchema.parse(process.env);
-
-const envSchemaPublic = z.object({
-  NEXT_PUBLIC_API_URL: z.string().url().default("http://localhost:3000"),
-});
-
-export const envPublic = envSchemaPublic.parse(process.env.NEXT_PUBLIC_API_URL);

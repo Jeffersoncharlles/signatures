@@ -7,7 +7,6 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { envPublic } from "@/env";
 
 const emailSchema = z
   .object({
@@ -40,8 +39,7 @@ const SignUpForm = () => {
   const handleSubmit = form.handleSubmit(async ({ email, password, name }) => {
     try {
       const response = await fetch(
-        // `https://signatures-chi.vercel.app/api/auth/register`,
-        `${envPublic.NEXT_PUBLIC_API_URL}/api/auth/register`,
+        `https://signatures-chi.vercel.app/api/auth/register`,
         {
           method: "POST",
           headers: {
