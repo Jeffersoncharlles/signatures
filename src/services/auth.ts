@@ -4,7 +4,6 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "./prisma";
-import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 const credentialsSchema = z.object({
@@ -49,10 +48,8 @@ const nextAuthOptions: NextAuthOptions = {
             email: user.email,
             image: user.image,
           };
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
-          if (error instanceof Prisma.PrismaClientKnownRequestError) {
-            throw new Error("Ops.. Ocorreu um erro volte mais tarde!.");
-          }
           throw new Error("Invalid credentials");
         }
       },
