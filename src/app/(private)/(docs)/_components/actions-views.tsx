@@ -10,10 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
-import { DocumentPDF } from "./columns";
+import { DocumentsPdF } from "./columns";
 
 interface Props {
-  pdf: DocumentPDF;
+  pdf: DocumentsPdF;
 }
 
 export const ActionsViews = ({ pdf }: Props) => {
