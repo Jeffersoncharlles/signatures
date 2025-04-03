@@ -1,12 +1,17 @@
 import Header from "@/components/header";
-// import { getServerSession } from "next-auth";
-// import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 export default async function DocumentsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/sign-in");
+  }
   return (
     <main className=" h-dvh  w-ful antialiased ">
       <Header />
