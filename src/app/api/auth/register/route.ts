@@ -43,7 +43,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Success" }, { status: 200 });
   } catch (error) {
     if (error instanceof ZodError) {
-      return error.flatten().fieldErrors;
+      return NextResponse.json(
+        { errors: error.flatten().fieldErrors },
+        { status: 400 }
+      );
     }
 
     return NextResponse.json(
