@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -23,6 +24,7 @@ type filePdF = z.infer<typeof fileSchema>;
 
 const InputFiles = () => {
   const [uploadStatus, setUploadStatus] = useState("");
+  const router = useRouter();
 
   const {
     register,
@@ -53,6 +55,7 @@ const InputFiles = () => {
       if (!response.ok) throw new Error("Erro ao enviar o arquivo");
 
       setUploadStatus("Upload realizado com sucesso!");
+      router.refresh();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setUploadStatus("Erro ao enviar o arquivo");
