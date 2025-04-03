@@ -2,7 +2,7 @@ import { env } from "@/env";
 import { compare } from "bcrypt";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
+// import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "./prisma";
 import { z } from "zod";
 
@@ -13,10 +13,10 @@ const credentialsSchema = z.object({
 
 const nextAuthOptions: NextAuthOptions = {
   providers: [
-    GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
-    }),
+    // GoogleProvider({
+    //   clientId: env.GOOGLE_CLIENT_ID,
+    //   clientSecret: env.GOOGLE_CLIENT_SECRET,
+    // }),
     CredentialsProvider({
       credentials: {
         email: {},
