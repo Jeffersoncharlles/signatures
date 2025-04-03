@@ -14,7 +14,7 @@ const registerSchema = z.object({
     .min(3, "Password must have than 8 characters"),
 });
 
-export const POST = async (request: Request) => {
+export async function POST(request: Request) {
   try {
     const { email, name, password } = registerSchema.parse(
       await request.json()
@@ -46,4 +46,4 @@ export const POST = async (request: Request) => {
   }
 
   return NextResponse.json({ message: "success" });
-};
+}
