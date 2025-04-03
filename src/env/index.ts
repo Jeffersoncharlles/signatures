@@ -2,8 +2,8 @@ import { z } from "zod";
 
 const envSchema = z.object({
   NEXT_PUBLIC_API_URL: z.string().url().default("http://localhost:3000"),
-  GOOGLE_CLIENT_ID: z.string(),
-  GOOGLE_CLIENT_SECRET: z.string(),
+  // GOOGLE_CLIENT_ID: z.string(),
+  // GOOGLE_CLIENT_SECRET: z.string(),
   NEXTAUTH_SECRET: z
     .string()
     .default("8vWn40nG+nnImn6L5479g/Mbnc9DDn+j2yEOWYPXciw="),
