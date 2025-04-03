@@ -39,11 +39,16 @@ export async function POST(request: Request) {
         password: hashedPassword,
       },
     });
+
+    return NextResponse.json({ message: "Success" }, { status: 200 });
   } catch (error) {
     if (error instanceof ZodError) {
       return error.flatten().fieldErrors;
     }
-  }
 
-  return NextResponse.json({ message: "success" });
+    return NextResponse.json(
+      { message: "Error processing request" },
+      { status: 500 }
+    );
+  }
 }
