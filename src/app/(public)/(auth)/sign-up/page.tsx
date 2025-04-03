@@ -7,6 +7,7 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { env } from "@/env";
 
 const emailSchema = z
   .object({
@@ -39,13 +40,16 @@ const SignUpForm = () => {
   const handleSubmit = form.handleSubmit(async ({ email, password, name }) => {
     console.log({ email, password });
     try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, name }),
-      });
+      const response = await fetch(
+        `${env.NEXT_PUBLIC_API_URL}/api/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password, name }),
+        }
+      );
 
       if (response.ok) {
         router.push("/");
