@@ -43,7 +43,12 @@ const nextAuthOptions: NextAuthOptions = {
             throw new Error("Invalid credentials");
           }
 
-          return user;
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+          };
         } catch (error) {
           if (error instanceof Prisma.PrismaClientKnownRequestError) {
             throw new Error("Ops.. Ocorreu um erro volte mais tarde!.");
@@ -56,6 +61,7 @@ const nextAuthOptions: NextAuthOptions = {
   secret: env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60 * 24, //1d
   },
 };
 

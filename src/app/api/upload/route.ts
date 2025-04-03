@@ -4,8 +4,16 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { bucket } from "@/services/buckets";
 import { env } from "@/env";
 import { generateNameRandom } from "@/lib/generate-name-random";
+import { getServerSession } from "next-auth/next";
 
 export const POST = async (req: NextRequest) => {
+  const session = await getServerSession();
+
+  // console.log({ session });
+  if (!session) {
+    return NextResponse.json({ success: false }, { status: 500 });
+  }
+
   try {
     const formData = await req.formData();
     const file = formData.get("file");
@@ -32,7 +40,9 @@ export const POST = async (req: NextRequest) => {
     });
 
     // Fazer upload para o S3
+
     await bucket.send(putObjectCommand);
+    // Promise.all([]);
 
     // Gerar URL pública do arquivo
     const fileUrl = `https://${env.AWS_BUCKET_NAME}.r2.cloudflarestorage.com/${uniqueFileName}`;

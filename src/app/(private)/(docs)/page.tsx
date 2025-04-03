@@ -3,8 +3,9 @@ import { columns } from "./_components/columns";
 import { DataTable } from "./_components/data-table";
 
 import InputFiles from "./_components/input-files";
+import { fetchDocuments } from "./_actions/fetchdocuments";
 
-export default function Docs() {
+export default async function Docs() {
   const data = [
     {
       id: "22312312",
@@ -13,6 +14,10 @@ export default function Docs() {
       status: "PENDING",
     },
   ];
+
+  const datas = await fetchDocuments();
+
+  console.log(datas);
 
   return (
     <div className="flex flex-col">
