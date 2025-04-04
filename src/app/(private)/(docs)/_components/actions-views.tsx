@@ -12,6 +12,8 @@ import {
 import { MoreHorizontal, Trash } from "lucide-react";
 import { DocumentsPdF } from "./columns";
 import { useRouter } from "next/navigation";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import SignatureView from "./signatureView";
 
 interface Props {
   pdf: DocumentsPdF;
@@ -78,9 +80,14 @@ export const ActionsViews = ({ pdf }: Props) => {
             >
               Ver PDF
             </DropdownMenuItem>
-            <DropdownMenuItem className="text-green-700 cursor-pointer">
-              ASSINAR PDF
-            </DropdownMenuItem>
+            <Dialog>
+              <DialogTrigger asChild>
+                <DropdownMenuItem className="text-green-700 cursor-pointer">
+                  ASSINAR PDF
+                </DropdownMenuItem>
+              </DialogTrigger>
+              <SignatureView documentId={pdf.id} />
+            </Dialog>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -90,7 +97,12 @@ export const ActionsViews = ({ pdf }: Props) => {
           <Trash />
         </Button>
         <Button onClick={() => handleViewPdf(pdf.id)}>Ver</Button>
-        <Button>Assinar</Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>Assinar</Button>
+          </DialogTrigger>
+          <SignatureView documentId={pdf.id} />
+        </Dialog>
       </div>
     </div>
   );

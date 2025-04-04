@@ -56,11 +56,11 @@
 
 - [✅] cadastrar o usuario com email e senha
 - [✅] o cadastro deve confirmar se as duas senhas confere
-  - [x] Resposta que as senhas nao batem "Tempo Curto funcionalidade a fazer"
+  - [✅] Resposta que as senhas nao batem "Tempo Curto funcionalidade a fazer"
 - [✅] Logar o usuario com email e senha cadastrado
   - [x] Logar com OAuth Google "Tempo Curto funcionalidade a fazer"
 - [✅] Caso o usuario digite algo incorreto deve avisar que as credenciais nao sao validas
-  - [x] Resposta mais atrativa "Tempo Curto funcionalidade a fazer"
+  - [✅] Resposta mais atrativa "Tempo Curto funcionalidade a fazer"
 - [✅] Usario logado redirecionado para pagina de admin
 - [✅] Usario faz Logout
 - [✅] se o usuario nao tiver logado ele nao tem acesso a pagina
@@ -68,8 +68,8 @@
 - [✅] Validar se o arquivo e pdf se nao for nao sobe
 - [✅] listar todos os arquivos pdf do usuario em banco de dados
 - [✅] Visualizar status do arquivo nome e usuario a que pertence
-- [ ] Criar a visualizacao do PDF"
-- [ ] Deletar o PDF"
+- [✅ ] Criar a visualizacao do PDF"
+- [✅ ] Deletar o PDF"
 - [ ] Criar a assinatura e mudar o status do pdf "
 - [ ] Criar o registro da assinatura em timestamp "
 - [ ] Criar a interface da assinatura"
