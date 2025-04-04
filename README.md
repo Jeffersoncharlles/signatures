@@ -45,6 +45,10 @@
 
 ---
 
+TEMPO TOTAL PARA VERSAO 1.0 SO EM CODIGO SEM O TEMPO DE LEITURAS DE DOCUMENTACAO
+Projects · signatures
+19 hrs 36 mins
+
 ## Overview
 
 - O projeto consiste em criar em cadastrar usuario logar e fazer um upload de um pdf para poder fazer a assinatura digital
@@ -70,8 +74,8 @@
 - [✅] Visualizar status do arquivo nome e usuario a que pertence
 - [✅ ] Criar a visualizacao do PDF"
 - [✅ ] Deletar o PDF"
-- [ ] Criar a assinatura e mudar o status do pdf "(parcial falta tempo)
-- [ ] Criar o registro da assinatura em timestamp "(parcial falta tempo)
+- [✅ ] Criar a assinatura e mudar o status do pdf
+- [✅ ] Criar o registro da assinatura em timestamp
 - [✅] Criar a interface da assinatura"
 
 ---
@@ -438,7 +442,7 @@ Run signatures using the following command:
    - e mudar o status para assinado
    - (se fosse algo mais real tavez usaria uma lib que achei onde ela faz a veredura do pdf e coloca onde deve fazer a assinatura ou ate mesmo criaria)
 
-6. Toda a a parte de back-end para nao ficar fazendo rotas resulvi usar a parte de actions do nextjs para andar mais rapido e nao ter que fazer varias alteracoes e, codigo
+6. Toda a a parte de back-end para nao ficar algumas em actions outras em rotas nextjs para andar mais rapido e nao ter que fazer varias alteracoes e, codigo
 
 7. o deploy como opcional eu sempre faco e sempre utilizo a vercel tive alguns problemas exatamnete por que tinha que usar a parte de routes mais para andar mais rapido comecei a usar actions
 
