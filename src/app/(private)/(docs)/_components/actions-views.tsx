@@ -35,7 +35,6 @@ export const ActionsViews = ({ pdf }: Props) => {
         "Content-Type": "application/json",
       },
     });
-
     const data = await res.json();
 
     if (data.success && data.signedUrl) {
@@ -76,7 +75,10 @@ export const ActionsViews = ({ pdf }: Props) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="space-y-1">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
-            <DropdownMenuItem className="text-red-800 cursor-pointer">
+            <DropdownMenuItem
+              className="text-red-800 cursor-pointer"
+              onClick={() => handleDeletePDF(pdf.id)}
+            >
               Deletar PDF
             </DropdownMenuItem>
             <DropdownMenuItem
