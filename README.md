@@ -369,6 +369,15 @@ Install signatures using one of the following methods:
 ❯ docker composer -up -d
 ```
 
+**Using `env`** &nbsp;
+
+```json
+❯ renomear .env.sample
+❯ .env
+ - nao esquecer de configar o R2 CloudFlare para upload
+
+```
+
 **Using `npm`** &nbsp; [<img align="center" src="https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white" />](https://www.npmjs.com/)
 
 ```sh
