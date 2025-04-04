@@ -14,12 +14,17 @@ import { DocumentsPdF } from "./columns";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import SignatureView from "./signatureView";
+import { useState } from "react";
 
 interface Props {
   pdf: DocumentsPdF;
 }
 
 export const ActionsViews = ({ pdf }: Props) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => setOpen(false);
+
   const router = useRouter();
 
   const handleViewPdf = async (id: string) => {
@@ -80,13 +85,13 @@ export const ActionsViews = ({ pdf }: Props) => {
             >
               Ver PDF
             </DropdownMenuItem>
-            <Dialog>
+            <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger asChild>
                 <DropdownMenuItem className="text-green-700 cursor-pointer">
                   ASSINAR PDF
                 </DropdownMenuItem>
               </DialogTrigger>
-              <SignatureView documentId={pdf.id} />
+              <SignatureView documentId={pdf.id} onClose={handleClose} />
             </Dialog>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -97,11 +102,11 @@ export const ActionsViews = ({ pdf }: Props) => {
           <Trash />
         </Button>
         <Button onClick={() => handleViewPdf(pdf.id)}>Ver</Button>
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button>Assinar</Button>
           </DialogTrigger>
-          <SignatureView documentId={pdf.id} />
+          <SignatureView documentId={pdf.id} onClose={handleClose} />
         </Dialog>
       </div>
     </div>

@@ -55,15 +55,23 @@ export const POST = async (req: NextRequest) => {
     }
     const imageUrl = `${env.AWS_END_POINT}/${env.AWS_BUCKET_NAME}/${fileName}`;
 
-    await prisma.signature.create({
-      data: {
-        signatureImg: image,
-        userId: user.id,
-        documentId,
-      },
-    });
-
-    console.log(imageUrl);
+    await prisma.$transaction([
+      prisma.signature.create({
+        data: {
+          signatureImg: image,
+          userId: user.id,
+          documentId,
+          signedAt: new Date(),
+        },
+      }),
+      prisma.document.update({
+        where: { id: documentId },
+        data: {
+          status: "SIGNED",
+          updatedAt: new Date(),
+        },
+      }),
+    ]);
 
     return NextResponse.json({ success: true, url: imageUrl }, { status: 200 });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

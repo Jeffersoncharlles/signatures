@@ -70,9 +70,9 @@
 - [✅] Visualizar status do arquivo nome e usuario a que pertence
 - [✅ ] Criar a visualizacao do PDF"
 - [✅ ] Deletar o PDF"
-- [ ] Criar a assinatura e mudar o status do pdf "
-- [ ] Criar o registro da assinatura em timestamp "
-- [ ] Criar a interface da assinatura"
+- [ ] Criar a assinatura e mudar o status do pdf "(parcial falta tempo)
+- [ ] Criar o registro da assinatura em timestamp "(parcial falta tempo)
+- [✅] Criar a interface da assinatura"
 
 ---
 

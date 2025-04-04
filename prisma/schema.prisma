@@ -117,6 +117,7 @@ model Signature {
   userId       String   @map("user_id")
   documentId   String   @map("document_id")
   signatureImg String
+  signedAt     DateTime
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
