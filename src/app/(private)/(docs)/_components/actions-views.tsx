@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,12 +11,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, Trash } from "lucide-react";
 import { DocumentsPdF } from "./columns";
+import { useRouter } from "next/navigation";
 
 interface Props {
   pdf: DocumentsPdF;
 }
 
 export const ActionsViews = ({ pdf }: Props) => {
+  const router = useRouter();
+
   const handleViewPdf = async (id: string) => {
     const res = await fetch("/api/view-document", {
       method: "POST",
@@ -30,12 +34,12 @@ export const ActionsViews = ({ pdf }: Props) => {
     if (data.success && data.signedUrl) {
       window.open(data.signedUrl, "_blank");
     } else {
-      alert("Erro ao visualizar PDF");
+      toast.error("Erro ao visualizar PDF");
     }
   };
 
   const handleDeletePDF = async (id: string) => {
-    const res = await fetch("/api/view-document", {
+    const res = await fetch("/api/delete-document", {
       method: "DELETE",
       body: JSON.stringify({ id }),
       headers: {
@@ -43,9 +47,14 @@ export const ActionsViews = ({ pdf }: Props) => {
       },
     });
 
-    const data = res.json();
+    const data = await res.json();
 
-    console.log({ data });
+    if (data.success) {
+      toast.info("DELETADO COM SUCESSO");
+      router.refresh();
+    } else {
+      toast.error("Erro ao DELETAR PDF");
+    }
   };
 
   return (

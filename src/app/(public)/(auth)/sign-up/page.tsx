@@ -16,9 +16,9 @@ const emailSchema = z
     email: z.string().min(1, "Email is required").email("Invalid email"),
     password: z
       .string()
-      .min(1, "Password is required")
-      .min(3, "Password must have than 8 characters"),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
+      .min(4, "Password is required")
+      .min(4, "Password must have than 8 characters"),
+    confirmPassword: z.string().min(4, "Password confirmation is required"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
@@ -38,19 +38,14 @@ const SignUpForm = () => {
 
   const handleSubmit = form.handleSubmit(async ({ email, password, name }) => {
     try {
-      const response = await fetch(
-        // `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`,
-        // `/api/auth/register`,
-        "/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password, name }),
-          cache: "no-cache",
-        }
-      );
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, name }),
+        cache: "no-cache",
+      });
 
       if (response.ok) {
         router.push("/");
@@ -71,6 +66,9 @@ const SignUpForm = () => {
             required
             {...form.register("name")}
           />
+          <p className="text-pink-600 text-sm">
+            {form.formState.errors.name?.message}
+          </p>
         </div>
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
@@ -81,6 +79,9 @@ const SignUpForm = () => {
             required
             {...form.register("email")}
           />
+          <p className="text-pink-600 text-sm">
+            {form.formState.errors.email?.message}
+          </p>
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
@@ -92,6 +93,9 @@ const SignUpForm = () => {
             required
             {...form.register("password")}
           />
+          <p className="text-pink-600 text-sm">
+            {form.formState.errors.password?.message}
+          </p>
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
@@ -103,6 +107,9 @@ const SignUpForm = () => {
             required
             {...form.register("confirmPassword")}
           />
+          <p className="text-pink-600 text-sm">
+            {form.formState.errors.confirmPassword?.message}
+          </p>
         </div>
 
         <Button type="submit" className="w-full">

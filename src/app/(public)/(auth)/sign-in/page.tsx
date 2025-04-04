@@ -1,4 +1,6 @@
 "use client";
+
+import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
@@ -7,7 +9,6 @@ import { z } from "zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import Link from "next/link";
 
 const emailSchema = z.object({
@@ -16,7 +17,7 @@ const emailSchema = z.object({
 });
 
 const SignInForm = () => {
-  const [error, setError] = useState<string | null | undefined>();
+  // const [error, setError] = useState<string | null | undefined>();
 
   const router = useRouter();
   const form = useForm<z.infer<typeof emailSchema>>({
@@ -35,7 +36,8 @@ const SignInForm = () => {
     });
 
     if (response?.error) {
-      setError(response.error);
+      toast.error("Credencias Invalidas");
+      // setError(response.error);
     }
 
     if (!response?.error) {
@@ -62,7 +64,7 @@ const SignInForm = () => {
         </span>
       </div>
       <form onSubmit={handleSubmit} className="grid gap-6">
-        <p>{error}</p>
+        {/* <p>{error}</p> */}
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
           <Input

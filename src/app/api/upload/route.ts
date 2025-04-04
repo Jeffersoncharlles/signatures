@@ -54,6 +54,7 @@ export const POST = async (req: NextRequest) => {
     // Fazer upload para o R2 com verificação de erro
     try {
       await bucket.send(putObjectCommand);
+      // console.log(response);
     } catch (uploadError) {
       console.error("Erro no upload para o R2:", uploadError);
       return NextResponse.json(
@@ -90,7 +91,7 @@ export const POST = async (req: NextRequest) => {
 
     // Expira em 1 hora
     // console.log(fileUrl);
-    console.log(signedUrl);
+    // console.log(signedUrl);
 
     return NextResponse.json(
       { success: true, url: signedUrl },

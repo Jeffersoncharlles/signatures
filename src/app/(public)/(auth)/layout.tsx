@@ -1,4 +1,5 @@
 import { PenIcon } from "lucide-react";
+import { Toaster } from "@/components/ui/sonner";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -23,6 +24,7 @@ export default function AuthLayout({
             <CardContent>
               <div>
                 <div className="grid gap-6">{children}</div>
+                <Toaster richColors />
               </div>
             </CardContent>
           </Card>

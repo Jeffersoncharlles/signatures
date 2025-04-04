@@ -1,7 +1,6 @@
-// import { bucket } from "@/services/buckets";
+import { bucket } from "@/services/buckets";
 import { prisma } from "@/services/prisma";
-// import { GetObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
-// import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
@@ -48,11 +47,22 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    // // Gerar Signed URL (se o bucket for privado)
-    // const deleteObjectCommand = new DeleteObjectCommand({
-    //   Bucket: process.env.AWS_BUCKET_NAME,
-    //   Key: document?.fileKey,
-    // });
+    const deleteObjectCommand = new DeleteObjectCommand({
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Key: document?.fileKey,
+    });
+
+    const {
+      $metadata: { httpStatusCode },
+    } = await bucket.send(deleteObjectCommand);
+
+    if (httpStatusCode === 204) {
+      await prisma.document.delete({
+        where: {
+          id: document.id,
+        },
+      });
+    }
 
     return NextResponse.json(
       {

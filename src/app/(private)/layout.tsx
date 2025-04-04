@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { Toaster } from "@/components/ui/sonner";
 
 export default async function DocumentsLayout({
   children,
@@ -18,6 +19,7 @@ export default async function DocumentsLayout({
       <main className="max-w-5xl flex px-2 md:block md:px-4 h-dvh mx-auto  justify-center md:justify-normal ">
         {children}
       </main>
+      <Toaster richColors />
     </main>
   );
 }
