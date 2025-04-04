@@ -63,9 +63,14 @@ const InputFiles = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex gap-2 flex-col md:flex-row"
+    >
       <Input type="file" className="w-44" {...register("file")} />
-      <Button type="submit">Upload Novo PDF</Button>
+      <Button type="submit" className="w-44">
+        Upload Novo PDF
+      </Button>
       {errors.file?.message && (
         <p className="text-red-500">{String(errors.file.message)}</p>
       )}
