@@ -6,6 +6,8 @@ import InputFiles from "./_components/input-files";
 import { fetchDocuments } from "./_actions/fetchdocuments";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 export default async function Docs() {
   const fetchResult = await fetchDocuments();
 
