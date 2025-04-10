@@ -39,7 +39,6 @@
   - [ Prerequisites](#-prerequisites)
   - [ Installation](#-installation)
   - [ Usage](#-usage)
-- [ Funcionalidades Esperadas](#-funcionalidades-esperadas)
 - [ License](#-license)
 - [ Acknowledgments](#-acknowledgments)
 
@@ -60,11 +59,11 @@ Projects · signatures
 
 - [✅] cadastrar o usuario com email e senha
 - [✅] o cadastro deve confirmar se as duas senhas confere
-  - [✅] Resposta que as senhas nao batem "Tempo Curto funcionalidade a fazer"
+  - [✅] Resposta que as senhas nao batem
 - [✅] Logar o usuario com email e senha cadastrado
-  - [x] Logar com OAuth Google "Tempo Curto funcionalidade a fazer"
+  - [x] Logar com OAuth Google
 - [✅] Caso o usuario digite algo incorreto deve avisar que as credenciais nao sao validas
-  - [✅] Resposta mais atrativa "Tempo Curto funcionalidade a fazer"
+  - [✅] Resposta mais atrativa
 - [✅] Usario logado redirecionado para pagina de admin
 - [✅] Usario faz Logout
 - [✅] se o usuario nao tiver logado ele nao tem acesso a pagina
@@ -422,32 +421,6 @@ Run signatures using the following command:
    - Interface para simular assinatura em documento
    - Registro da assinatura com timestamp
    - Status do documento (Pendente, Assinado)
-
----
-
-## Desafios enfrentados e soluções adotadas
-
-1. TEMPO sem sombras de duvidas 3 dias e pouco tempo estou programando em media 9 horas por dia isso so em codigo com o registro do walkatime
-   mesmo assim acredito que nao vou entrar meu melhor
-
-2. upload de arquivos sabia que isso poderia ficar muito ruim entao pensei em algumas formas e a melhor solucao foi criar um bucket no R2 da CloudFire
-
-3. TEMPO novamente nao estou conseguindo corrigir detalhes por que estou tentando entregar todas as funcionalidades no tempo desejado
-
-4. o desafio e de FRONT-END... mais foi pedido coisas de full-stack , mesmo eu me encaixando como full-stack isso nao estava na proposta da vaga
-
-5. logica da assinatura nao ficou muito bem explicado como era para fazer entao pretendo seguir a seguinte logica "se der tempo."
-
-   - criar uma pagina de draw onde a pessoa vai poder assinar salvar esse draw em uma pasta no bucket com o pdf
-   - e mudar o status para assinado
-   - (se fosse algo mais real tavez usaria uma lib que achei onde ela faz a veredura do pdf e coloca onde deve fazer a assinatura ou ate mesmo criaria)
-
-6. Toda a a parte de back-end para nao ficar algumas em actions outras em rotas nextjs para andar mais rapido e nao ter que fazer varias alteracoes e, codigo
-
-7. o deploy como opcional eu sempre faco e sempre utilizo a vercel tive alguns problemas exatamnete por que tinha que usar a parte de routes mais para andar mais rapido comecei a usar actions
-
-8. eu iria usar um recurso de middleware para routes privadas , mais novamente o tempo atrapalhou entao usei a logica mais basica de usar a session no layout da rota privada para saber se estar autenticado ou nao
-   poderia ser melhor mais o tempo curto nao deixa eu estudar melhores alternativas
 
 ---
 
