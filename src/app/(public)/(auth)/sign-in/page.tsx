@@ -41,7 +41,7 @@ const SignInForm = () => {
     }
 
     if (!response?.error) {
-      router.push("/");
+      router.push("/dashboard");
       router.refresh();
     }
   });
