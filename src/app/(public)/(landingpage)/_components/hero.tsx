@@ -22,14 +22,17 @@ const HeroSection = () => {
       className: "text-primary ",
     },
   ];
+
   return (
-    <div className="flex  gap-6 justify-between items-center">
-      <div className="gap-6 flex flex-col mt-8 flex-1">
-        <TypewriterEffect
-          words={words}
-          cursorClassName="bg-primary "
-          className="text-2xl"
-        />
+    <div className="flex  gap-6 justify-between items-center ">
+      <div className="gap-6 flex flex-col mt-8  w-[640px]">
+        <div className="h-[120px] w-full">
+          <TypewriterEffect
+            words={words}
+            cursorClassName="bg-primary "
+            className="text-xl"
+          />
+        </div>
         <div className="w-[480px] mt-4">
           <p className="text-lg  text-zinc-500">
             Com o Signature, você assina seus PDFs em segundos. Sem burocracia.
