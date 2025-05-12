@@ -1,11 +1,24 @@
-import { PenIcon } from "lucide-react";
 import { Metadata } from "next";
+import HeaderLandingPage from "./_components/header-landing-page";
 
 export const metadata: Metadata = {
   title: "Signatures",
   description: "Um App onde pode fazer a assinatura dos seus documentos pdf",
   openGraph: {
-    locale: "pt-BR",
+    title: "Signatures",
+    description: "Um App onde pode fazer a assinatura dos seus documentos pdf",
+    url: `https://signatures-chi.vercel.app/og-image.png`,
+    siteName: "Signatures",
+    locale: "pt_BR",
+    type: "website",
+    images: [
+      {
+        url: `https://signatures-chi.vercel.app/og-image.png`,
+        width: 800,
+        height: 600,
+        alt: "Signatures",
+      },
+    ],
   },
 };
 
@@ -17,15 +30,7 @@ export default function RootLayout({
   return (
     <main className="flex  min-h-svh flex-col  bg-muted  ">
       <div className=" border-b w-full p-6">
-        <header className="flex max-w-7xl mx-auto">
-          <a
-            href="#"
-            className="flex items-center gap-2 self-center font-medium"
-          >
-            <PenIcon className="fill-primary text-primary-foreground size-6" />
-            Signature
-          </a>
-        </header>
+        <HeaderLandingPage />
       </div>
       <section className="flex max-w-7xl mx-auto flex-col w-full py-6">
         {children}

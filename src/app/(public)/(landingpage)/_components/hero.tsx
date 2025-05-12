@@ -24,8 +24,8 @@ const HeroSection = () => {
   ];
 
   return (
-    <div className="flex  gap-6 justify-between items-center ">
-      <div className="gap-6 flex flex-col mt-8  w-[640px]">
+    <div className="flex  gap-6 justify-between items-center h-screen">
+      <div className="gap-6 flex flex-col  w-[640px]">
         <div className="h-[120px] w-full">
           <TypewriterEffect
             words={words}
